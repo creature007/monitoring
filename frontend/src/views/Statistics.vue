@@ -205,7 +205,7 @@ h1 {
 }
 
 .stats-card.total .stat-value {
-  color: var(--accent-color);
+  color: #ffffff;
 }
 
 .stats-card.online .stat-value {

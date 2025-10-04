@@ -1,4 +1,4 @@
-=from flask import Flask, jsonify, request, send_from_directory, make_response
+from flask import Flask, jsonify, request, send_from_directory, make_response
 from flask_cors import CORS
 import psycopg2
 from psycopg2.extras import RealDictCursor
@@ -36,14 +36,14 @@ data_logger = logging.getLogger('database_data')
 data_logger.setLevel(logging.INFO)
 data_handler = logging.FileHandler(data_log_file, encoding='utf-8')
 data_handler.setFormatter(logging.Formatter('%(asctime)s - %(message)s'))
-data_logger.addHandler(data_handler)0
-0lo0gger = logging.getLogger(__name__)
+data_logger.addHandler(data_handler)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 CORS(app)        
 
 # Cache-Control headerlarini o'rnatish
-..
+
 @app.after_request
 def add_header(response):   
     """Barcha so'rovlar uchun keshni o'chirish"""
@@ -389,8 +389,7 @@ def get_devices():
         return jsonify({
             'success': False,
             'error': 'Qurilmalar ro\'yxatini olishda xato',
-            'details': str(e)........
-
+            'details': str(e)
         }), 500
 
 @app.route('/api/device/<int:device_id>', methods=['GET'])
@@ -702,4 +701,4 @@ if __name__ == '__main__':
     HOST = '127.0.0.1'  # Server manzili
     PORT = 8007             # Port raqami
     logger.info("Server ishga tushmoqda: %s:%s", HOST, PORT)
-    app.run(host=HOST, port=PORT, debug=True)from flask import Flask, jsonify, request, send_from_directory, make_response
+    app.run(host=HOST, port=PORT, debug=True)
